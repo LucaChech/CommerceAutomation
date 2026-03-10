@@ -139,6 +139,59 @@
 
 ---
 
+## Section 10: Follow-Up Questions (from transcript review)
+
+> These questions emerged from analyzing the requirements transcript. Ask them in the next conversation.
+
+### Bank Reconciliation
+43. How do you currently do bank reconciliation? Specifically:
+    - Do you download bank statements as files (CSV, PDF, Excel)?
+    - Do you check transactions manually through online banking?
+    - Do you use any software for this, or is it fully manual?
+    - How often do you reconcile? (daily, weekly, monthly, when the accountant asks?)
+    - How long does it typically take?
+
+### Invoicing
+44. What are the legal requirements for invoices in Ecuador?
+    - Is there a mandated electronic invoicing system (like Italy's SDI)?
+    - What fields are legally required? (tax ID / RUC, specific format, sequential numbering?)
+    - Do you currently use any software to generate invoices, or is it manual (Word/Excel)?
+    - What does a typical invoice look like? (screenshot or example would be ideal)
+
+### Payment Plans
+45. How do you currently track payment plans / installments?
+    - Is it in your head, on paper, in Excel, or somewhere else?
+    - How often do clients miss a payment or pay late?
+    - What do you do when someone is late — call them, message them, wait?
+    - Do you charge interest or penalties for late payments?
+
+### Client Portal
+46. Do any of your clients currently use any kind of online ordering system (even a competitor's)?
+    - How tech-savvy are your clients in general?
+    - Would they actually use a web portal, or would they keep messaging you on WhatsApp regardless?
+    - Do clients need to see product availability / prices before ordering?
+
+### Courier Integration
+47. Which courier service(s) do you use?
+    - How do you currently request pickups? (phone, app, web portal?)
+    - Do you generate shipping labels yourself?
+    - Is courier pickup on-demand or scheduled?
+
+### Accounting System
+48. About Iconta:
+    - What exactly are the API capabilities? Can you share the API documentation or a link to it?
+    - Can the API handle: creating invoices, adding/updating products, querying stock levels, recording payments?
+    - How much does Iconta cost (monthly/annual)?
+    - What was the outcome of the Tuesday accountant meeting regarding inventory tracking requirements?
+49. Regarding Odoo or a replacement system:
+    - Did you confirm whether Odoo has full Ecuador localization (SRI compliance, electronic invoicing)?
+    - What's your budget range for a new accounting/ERP system?
+50. Pricing strategy: Have you made progress on defining fixed retail price tiers? Can you export your current wholesale price list from Iconta so we can use it as a starting point?
+51. Could you export a sample of client order history from Iconta? (This would help us analyze actual pricing patterns and suggest a tier structure)
+52. How many direct-import competitors are there in your market? How much cheaper are they typically?
+
+---
+
 ## How to Answer
 
 - Don't overthink it. First-draft, honest answers are more useful than polished ones.
