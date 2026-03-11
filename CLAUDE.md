@@ -1,5 +1,8 @@
 # AI Consulting Business — Project Context
 
+## Note on web searches
+When asked to perform a web search NEVER default back to training knowledge because it is not up to date. If main agents or subagents do not have permission to do web searches please tell me so and abort. 
+
 ## Project Overview
 
 This project is the foundation of a **freelance AI automation consultancy**. The goal is to develop a **suite of ready-made automation products**, each targeting a specific phase of the typical workflow in a commerce business. These products serve as both the core offering and a portfolio to kickstart the consultancy.
