@@ -45,7 +45,7 @@ Cleaned and structured from voice transcript between project owner and brother (
 ---
 
 ## Business Context Notes
-- **Client types**: Wholesalers ("grossisti") and retail locations ("locali")
+- **Client types**: Wholesalers ("grossisti"), retail locations ("locali"), and end consumers (B2C)
 - **Communication channel**: Currently WhatsApp-heavy
 - **Pain points**: Manual invoicing, manual bank reconciliation, manual payment tracking
 - **Implicit need**: The brother wants to reduce headcount or free up employee time by automating back-office tasks
@@ -61,7 +61,7 @@ Cleaned and structured from voice transcript between project owner and brother (
 
 ### 6. Invoicing — Personnel Note
 - Invoice generation currently handled with help from Aura (brother's girlfriend)
-- Potentially she could be given access to handle invoicing through the system, or it could be automated entirely
+- The system should handle invoicing autonomously
 
 ### 7. Promotions & Business Intelligence
 - Brother says he **doesn't have time to think about promotions** — wants the system to handle this
@@ -76,6 +76,31 @@ Cleaned and structured from voice transcript between project owner and brother (
   - Examples mentioned: repurchase incentives (spend $X → get a discount coupon on next purchase within a date range)
   - Reference model: Tigotà / shopping center loyalty programs
 - **Key point**: Not just suggesting promotions — brother wants the system to **think them up AND execute them automatically**
+
+### 8. Automatic Quote/Estimate Generation
+- Currently Johnny manually builds quotes ("preventivi"): looks up client history in Iconta, copies past prices, calculates totals
+- For a 50+ item order this is extremely time-consuming
+- System should **automatically generate quotes** based on:
+  - The client's pricing tier or negotiated rates
+  - Product catalog with current pricing
+  - Order details (items, quantities)
+- Quote should be generated instantly when an order comes in, ready for review or sent directly to the client for approval
+- Should handle the interpretation of informal/approximate product names from clients (fuzzy matching to catalog)
+- Reduces dependency on brother as the single pricing authority — prices are pre-configured in the system
+- Approved quotes feed directly into invoicing and order fulfillment
+
+### 9. Social Media Management
+- System should act as an **automated social media manager** across relevant channels:
+  - **Instagram**: Post product updates, promotions, new arrivals, seasonal content
+  - **Email**: Newsletters, promotional campaigns, new product announcements to client base
+  - Other channels as relevant (Facebook, TikTok, etc.)
+- Should handle **content creation and scheduling** autonomously:
+  - Generate post copy, select/suggest product images
+  - Schedule posts according to an optimal posting calendar
+  - Coordinate with promotions engine (requirement #7) — when a promotion is created, automatically push it to social channels
+- Currently Santiago handles social media manually — system should reduce or eliminate this dependency
+- Should maintain consistent brand voice and visual identity across channels
+- Analytics: track engagement, reach, and conversion from social media efforts
 
 ---
 
@@ -133,7 +158,7 @@ Cleaned and structured from voice transcript between project owner and brother (
 ### Business Name
 - **Apta Imports** (mentioned in context of the website)
 
-### Order Flow (from questionnaire context)
+### Order Flow (from questionnaire context) ⚠️ TO BE VERIFIED
 1. Client places order (WhatsApp, web, etc.)
 2. Brother forwards order to **Johnny**
 3. Johnny prepares the quote ("preventivo") with prices based on client history
@@ -151,9 +176,10 @@ Cleaned and structured from voice transcript between project owner and brother (
 ### Q3. Roughly how many active customers?
 - **~500** (rough estimate, taken "with a pinch of salt")
 
-### Q4. Split between wholesale and retail?
+### Q4. Split between wholesale, retail, and end consumers?
 - **Wholesalers**: Very few — roughly **~10 clients** (~2% of total)
-- **Retail/locales**: The vast majority (~98%)
+- **Retail/locales**: Unknown exact percentage (part of the remaining ~98%)
+- **End consumers (B2C)**: Unknown exact percentage (part of the remaining ~98%) — typically small orders via website or Instagram
 
 ### Q7. Order channels ranked by frequency:
 1. **WhatsApp** (most frequent) — clients send:
@@ -161,8 +187,8 @@ Cleaned and structured from voice transcript between project owner and brother (
    - Screenshots of the product catalog
    - Photos of handwritten lists (e.g., "one carton of blueberry, two cartons of chocolate")
 2. **In-person visits** (tied for second) — clients come to the warehouse/showroom:
-   - They point out products, Johnny photographs each item and sends photo + quantity to a **group chat** (WhatsApp group with brother + employees)
-   - Johnny then converts those photos + quantities into an **Excel quote** (quantity, product, unit price, total)
+   - They point out products, brother photographs each item and sends photo to Johnny + quantity to a **group chat** (WhatsApp group with brother + employees)
+   - Johnny then converts those photos + quantities into a quote (quantity, product, unit price, total)
    - Quote sent to client → client approves → order proceeds
 3. **Online orders** (tied for second) — via website or Instagram:
    - Website orders come through directly
@@ -188,7 +214,7 @@ Cleaned and structured from voice transcript between project owner and brother (
   - For a 50-item order, this takes a very long time
 - **Key need**: A single pricing database where prices are pre-defined per client (or client tier), so quotes can be generated automatically without brother's involvement each time
 
-### Q8c. Pricing system — current state
+### Q8c. Pricing system — current state (retail pricing only)
 - **No centralized price list exists** per client or tier
 - **Current strategy shift**: Brother is trying to simplify from many price points to just two tiers (one price for retail/locales, one for wholesalers) — but unsure if this is a good strategy and hasn't implemented it yet
 - **How pricing works today**:
@@ -235,16 +261,17 @@ Cleaned and structured from voice transcript between project owner and brother (
 - Flexibility to adjust per-client when market conditions demand it, but with guardrails
 
 #### Pricing strategy direction (emerging)
-- **Wholesale prices exist and are defined** — all wholesalers get the same (minimum) price. This data is available now.
-- **Retail prices are the problem** — no systematic strategy yet, currently ad hoc per client
+- **Wholesale prices exist and are defined** — all wholesalers get the same (minimum) price. Data exists in Iconta but needs to be exported.
+- **End-consumer prices exist and are defined** — data exists in Iconta but needs to be exported.
+- **Retail prices are the only missing piece** — no systematic strategy yet, currently ad hoc per client
 - **Key insight from brother**: Narrowing the gap between wholesale and retail prices would reduce the risk of being undercut by wholesalers who resell to retailers at near-wholesale prices
 - Brother has been postponing this decision due to workload — keeps getting pushed aside by incoming orders
 - **Possible pragmatic approach**: Set fixed retail prices and accept that some clients won't buy ("if I sell, I sell; if I don't, so be it") — brother sees this as the only viable solution but struggles with it because he needs the revenue
 - **Competition**: Some competitors import directly (cutting out the brother entirely), adding further price pressure
 
 #### Implication for development
-- **Wholesale pricing data is available now** — can be used immediately
-- **Retail pricing requires a strategic decision** by the brother before it can be systematized
+- **Wholesale and end-consumer pricing data exists in Iconta** — needs to be exported before it can be used
+- **Retail pricing is the only gap** — requires a strategic decision by the brother before it can be systematized
 - Development can proceed on other modules (bank reconciliation, invoicing, order intake) while pricing strategy is resolved
 - The system could help the brother *make* the pricing decision: analyze cost data, margins, and suggest tier structures — then let him approve
 
@@ -289,6 +316,13 @@ Cleaned and structured from voice transcript between project owner and brother (
   - **Tier 1**: Lower price for price-sensitive / high-volume / long-credit retailers
   - **Tier 2**: Higher price for less price-sensitive retailers
   - This is more work — requires manually assigning a price per product per tier
+
+---
+
+## Next Steps
+- Export wholesale prices from Iconta
+- Export end-consumer prices from Iconta
+- Continue questionnaire from Q9 onward
 
 ---
 
